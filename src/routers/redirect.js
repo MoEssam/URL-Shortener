@@ -8,15 +8,12 @@ router.get('/:hash', async (req, res) => {
         const urlhash = await Url.findOne({ urlCode }, function (err, doc) {
             if (doc) {
                 console.log('APP: Found ID in DB, redirecting to URL')
-                return res.send(doc.url);
+                return res.redirect(doc.url);
             } else {
                 console.log('APP: Could not find ID in DB, redirecting to home')
-                res.redirect('/')
+                res.redirect('http://google.com')
             }
         })
-
-
-        //res.send(urlhash)
     } catch (e) {
         res.status(500).send()
     }
